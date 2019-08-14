@@ -1,14 +1,7 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"io"
-	"log"
-	"os"
 	"sort"
-	"strconv"
-	"strings"
 )
 
 func activityNotifications(exp []int, d int) int {
@@ -63,114 +56,4 @@ func activityNotifications(exp []int, d int) int {
 	}
 	return alerts
 
-}
-
-func main() {
-	/*
-		Start My custom test cases
-	*/
-
-	// case custom 0
-	expenditure := []int{2, 3, 4, 2, 3, 6, 8, 4, 5, 33, 44, 55, 66, 77, 88, 5, 33, 44, 55, 66, 77, 88, 5, 33, 44, 55, 66, 77, 88, 5, 33, 44, 55, 66, 77, 88}
-	d := 5
-	result := activityNotifications(expenditure, d)
-	if result != 6 {
-		log.Panicf("Result %v != 6", result)
-	} else {
-		fmt.Println("Case Custom 0: Ok")
-	}
-	// case custom 1
-	expenditure = []int{4, 3, 2, 1, 5}
-	d = 4
-	result = activityNotifications(expenditure, d)
-	if result != 1 {
-		log.Fatalf("Result %v != 0", result)
-	} else {
-		fmt.Println("Case custom 1: Ok")
-	}
-
-	/*
-		Start Hackerrank sample test cases
-	*/
-
-	// case 0
-	expenditure = []int{2, 3, 4, 2, 3, 6, 8, 4, 5}
-	d = 5
-	result = activityNotifications(expenditure, d)
-	if result != 2 {
-		log.Fatalf("Result %v != 2", result)
-	} else {
-		fmt.Println("Case 0: Ok")
-	}
-
-	// case 1
-	expenditure = []int{1, 2, 3, 4, 4}
-	d = 4
-	result = activityNotifications(expenditure, d)
-	if result != 0 {
-		log.Fatalf("Result %v != 0", result)
-	} else {
-		fmt.Println("Case 1: Ok")
-	}
-
-	// case 2
-	expenditure = []int{10, 20, 30, 40, 50}
-	d = 3
-	result = activityNotifications(expenditure, d)
-	if result != 1 {
-		log.Fatalf("Result %v != 1", result)
-	} else {
-		fmt.Println("Case 2: Ok")
-	}
-
-	/*
-		Start LONG hackerrank test case 01
-	*/
-	// test case 01 (real)
-	f, err := os.Open("/home/james/Documents/projects/misc_python/fraudulent-activity-notifications-testcase01.txt")
-	checkError(err)
-	reader := bufio.NewReaderSize(f, 1024*1024)
-	nd := strings.Split(readLine(reader), " ")
-
-	nTemp, err := strconv.ParseInt(nd[0], 10, 64)
-	checkError(err)
-	n := int(nTemp)
-
-	dTemp, err := strconv.ParseInt(nd[1], 10, 64)
-	checkError(err)
-	d = int(dTemp)
-
-	expenditureTemp := strings.Split(readLine(reader), " ")
-
-	expenditure = []int{}
-
-	for i := 0; i < int(n); i++ {
-		expenditureItemTemp, err := strconv.ParseInt(expenditureTemp[i], 10, 64)
-		checkError(err)
-		expenditureItem := int(expenditureItemTemp)
-		expenditure = append(expenditure, expenditureItem)
-	}
-	result = activityNotifications(expenditure, d)
-	ans := 633
-	fmt.Println(result)
-	if result != ans {
-		log.Fatalf("Result %d != $d", result, result, ans)
-	} else {
-		fmt.Println("Case LONG 01: Ok")
-	}
-}
-
-func readLine(reader *bufio.Reader) string {
-	str, _, err := reader.ReadLine()
-	if err == io.EOF {
-		return ""
-	}
-
-	return strings.TrimRight(string(str), "\r\n")
-}
-
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
 }
