@@ -2,7 +2,7 @@ package main
 
 import "sort"
 
-// Go solution to HackerRank Fraudulent Activity Notifications challenge
+// Go solution to HackerRank.com Fraudulent Activity Notifications challenge
 // https://www.hackerrank.com/challenges/fraudulent-activity-notifications/
 func activityNotifications(exp []int, d int) int {
 	dIsEven := d%2 == 0
