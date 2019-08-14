@@ -2,6 +2,8 @@ package main
 
 import "sort"
 
+// Go solution to HackerRank Fraudulent Activity Notifications challenge
+// https://www.hackerrank.com/challenges/fraudulent-activity-notifications/
 func activityNotifications(exp []int, d int) int {
 	dIsEven := d%2 == 0
 	alerts := 0
@@ -27,7 +29,7 @@ func activityNotifications(exp []int, d int) int {
 
 		// insert newest value in correct sorted location - with memory leak fix f/ go wiki - slice tricks
 		insIdx := sort.SearchInts(win, cur_val)
-		win = append(win, 0 /* use the zero value of the element type */)
+		win = append(win, 0)
 		copy(win[insIdx+1:], win[insIdx:])
 		win[insIdx] = cur_val
 	}
