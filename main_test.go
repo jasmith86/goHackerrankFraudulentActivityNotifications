@@ -54,7 +54,7 @@ func TestActivityNotifications(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			result := activityNotifications(test.expenditure, test.d)
-			if test.answer == result {
+			if test.answer != result {
 				t.Errorf("wanted %d, but got %d", test.answer, result)
 			}
 		})
