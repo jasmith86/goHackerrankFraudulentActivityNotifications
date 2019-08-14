@@ -23,9 +23,11 @@ func activityNotifications(exp []int, d int) int {
 			alerts += 1
 		}
 
-		// delete oldest value
+		// delete oldest value -  with memory leak fix f/ go wiki - slice tricks
 		delIdx := sort.SearchInts(win, win_elem_to_del)
-		win = append(win[:delIdx], win[delIdx+1:]...)
+		copy(win[delIdx:], win[delIdx+1:])
+		win[len(win)-1] = 0
+		win = win[:len(win)-1]
 
 		// insert newest value in correct sorted location - with memory leak fix f/ go wiki - slice tricks
 		insIdx := sort.SearchInts(win, cur_val)
